@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package d;
+
+message ServerStatsResponse {
+    int64 startTime = 1;
+}
+
+message ServerStatsRequest {}
+
+service AdminService {
+    rpc GetServerStats(ServerStatsRequest) returns (ServerStatsResponse);
+}
