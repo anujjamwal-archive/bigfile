@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package bigfile.server;
+
+import "protos/core.proto";
+
+message GetInfoRequest {
+  string path = 1;
+}
+
+message GetInfoResponse {
+  bigfile.core.Error error = 1;
+  int64 size = 2;
+}
+
+message WriteRequestChunk {
+  string path = 1;
+  int64 offset = 2;
+  int64 sizeInBytes = 3;
+  bytes data = 4;
+}
+
+message WriteResponse {
+  bigfile.core.Error error = 1;
+}
+
+message ReadRequest {
+  string path = 1;
+  int64 offset = 2;
+  int64 size = 3;
+}
+
+message ReadResponseChunk {
+  bigfile.core.Error error = 1;
+  int64 sizeInBytes = 3;
+  bytes data = 4;
+}
+
+message DeleteRequest {
+  string path = 1;
+}
+
+message DeleteResponse {
+  bigfile.core.Error error = 1;
+}
+
+service FileService {
+  rpc GetInfo(GetInfoRequest) returns (GetInfoResponse);
+  rpc Write(stream WriteRequestChunk) returns (WriteResponse);
+  rpc Read(ReadRequest) returns (stream ReadResponseChunk);
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
+}

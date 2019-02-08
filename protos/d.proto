@@ -1,13 +1,32 @@
 syntax = "proto3";
 
-package d;
+package bigfile.d;
+
+import "protos/core.proto";
 
 message ServerStatsResponse {
-    int64 startTime = 1;
+  int64 upTime = 1;
 }
 
-message ServerStatsRequest {}
+message ServerStatsRequest {
+  bigfile.core.Error error = 1;
+}
+
+message CreateFileRequest {
+  string path = 1;
+  int64 sequence = 2;
+  bytes data = 3;
+}
+
+message CreateFileResponse {
+  string path = 1;
+  int64 size = 2;
+}
 
 service AdminService {
-    rpc GetServerStats(ServerStatsRequest) returns (ServerStatsResponse);
+  rpc GetServerStats(ServerStatsRequest) returns (ServerStatsResponse);
+}
+
+service FileService {
+  rpc CreateFile(CreateFileRequest) returns (CreateFileResponse);
 }

@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package bigfile.core;
+
+message Error {
+  string errorCode = 1;
+  string errorDescription = 2;
+}
