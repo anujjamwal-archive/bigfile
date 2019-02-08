@@ -24,8 +24,10 @@ grpc_proto_library(
 
 cc_library(
     name = "bigfile_cc_library",
-    hdrs = ["bigfile/server/fileservice.hpp"],
-    srcs = ["bigfile/server/fileservice.cc"],
+    hdrs = ["bigfile/server/fileservice.hpp",
+            "bigfile/server/adminservice.hpp"],
+    srcs = ["bigfile/server/fileservice.cc",
+            "bigfile/server/adminservice.cc"],
     defines = ["BAZEL_BUILD"],
     deps = [":bigfile_grpc", "@com_github_grpc_grpc//:grpc++"],
 )

@@ -44,9 +44,21 @@ message DeleteResponse {
   bigfile.core.Error error = 1;
 }
 
+message ServerStatsResponse {
+  int64 upTime = 1;
+}
+
+message ServerStatsRequest {
+  bigfile.core.Error error = 1;
+}
+
 service FileService {
   rpc GetInfo(GetInfoRequest) returns (GetInfoResponse);
   rpc Write(stream WriteRequestChunk) returns (WriteResponse);
   rpc Read(ReadRequest) returns (stream ReadResponseChunk);
   rpc Delete(DeleteRequest) returns (DeleteResponse);
+}
+
+service AdminService {
+  rpc GetServerStats(ServerStatsRequest) returns (ServerStatsResponse);
 }
