@@ -11,6 +11,7 @@ namespace bigfile {
         ServerStatsResponse GetStats();
         CreateFileResponse CreateFile(std::string_view path, std::string& content);
         DeleteFileResponse DeleteFile(std::string_view path);
+        ReadFileResponse ReadFile(std::string_view path);
 
       private:
         std::unique_ptr<AdminService::Stub> stub_;

@@ -8,6 +8,7 @@ namespace bigfile {
       public:
       ::grpc::Status CreateFile(::grpc::ServerContext* context, const CreateFileRequest* request, CreateFileResponse* response);
       ::grpc::Status DeleteFile(::grpc::ServerContext* context, const DeleteFileRequest* request, DeleteFileResponse* response);
+      ::grpc::Status ReadFile(::grpc::ServerContext* context, const ReadFileRequest* request, ReadFileResponse* response);
     };
   }
 }

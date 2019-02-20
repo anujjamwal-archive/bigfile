@@ -25,5 +25,21 @@ namespace bigfile {
 
       return ::grpc::Status::OK;
     }
+
+    ::grpc::Status FileServiceImpl::ReadFile(::grpc::ServerContext* context, const ReadFileRequest* request, ReadFileResponse* response)
+    {
+      std::ifstream file {request->path()};
+      std::string contents;
+      file.seekg(0, std::ios::end);
+      auto size = file.tellg(); 
+      contents.reserve(size);
+      file.seekg(0, std::ios::beg);
+
+      contents.assign((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+
+      response->set_data(contents);
+
+      return ::grpc::Status::OK;
+    }
   }
 }

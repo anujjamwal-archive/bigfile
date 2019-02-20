@@ -20,6 +20,16 @@ message CreateFileResponse {
   int64 size = 2;
 }
 
+message ReadFileRequest {
+  string path = 1;
+}
+
+message ReadFileResponse {
+  bigfile.core.Error error = 1;
+  string path = 2;
+  bytes data = 3;
+}
+
 message DeleteFileRequest {
   string path = 1;
 }
@@ -33,4 +43,5 @@ service AdminService {
 service FileService {
   rpc CreateFile(CreateFileRequest) returns (CreateFileResponse);
   rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse);
+  rpc ReadFile(ReadFileRequest) returns (ReadFileResponse);
 }

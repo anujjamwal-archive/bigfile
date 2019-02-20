@@ -64,5 +64,24 @@ namespace bigfile {
         return response;
       }
     }
+
+    ReadFileResponse Client::ReadFile(std::string_view path)
+    {
+      grpc::ClientContext clientContext;
+      ReadFileRequest request;
+      request.set_path(path.data(), path.length());
+
+      ReadFileResponse response;
+
+      grpc::Status status = file_stub_->ReadFile(&clientContext, request, &response);
+
+      if (status.ok()) {
+        return response;
+      } else {
+        std::cout << status.error_code() << ": " << status.error_message()
+                << std::endl;
+        return response;
+      }
+    }
   }
 }
