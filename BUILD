@@ -34,12 +34,17 @@ cc_library(
 
 cc_library(
     name = "disk_cc_library",
-    hdrs = ["bigfile/d/fileservice.hpp",
-            "bigfile/d/adminservice.hpp"],
+    hdrs = [
+        "bigfile/d/fileservice.hpp",
+        "bigfile/d/adminservice.hpp",
+    ],
     srcs = ["bigfile/d/fileservice.cc",
             "bigfile/d/adminservice.cc"],
     defines = ["BAZEL_BUILD"],
-    deps = [":disk_grpc", "@com_github_grpc_grpc//:grpc++"],
+    deps = [
+        ":disk_grpc",
+        "@com_github_grpc_grpc//:grpc++"
+    ],
 )
 
 cc_library(
@@ -62,4 +67,11 @@ cc_binary(
     srcs = ["bigfile/server/server.cc"],
     defines = ["BAZEL_BUILD"],
     deps = [":bigfile_cc_library", "@com_github_grpc_grpc//:grpc++"],
+)
+
+cc_binary(
+    name = "dtest",
+    srcs = ["bigfile/d/main.cc"],
+    defines = ["BAZEL_BUILD"],
+    deps = [":disk_client", "@com_github_grpc_grpc//:grpc++"],
 )
