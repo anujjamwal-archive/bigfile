@@ -42,6 +42,14 @@ cc_library(
     deps = [":disk_grpc", "@com_github_grpc_grpc//:grpc++"],
 )
 
+cc_library(
+    name = "disk_client",
+    hdrs = ["bigfile/d/client.hpp"],
+    srcs = ["bigfile/d/client.cc"],
+    defines = ["BAZEL_BUILD"],
+    deps = [":disk_grpc", "@com_github_grpc_grpc//:grpc++"],
+)
+
 cc_binary(
     name = "disk",
     srcs = ["bigfile/d/server.cc"],

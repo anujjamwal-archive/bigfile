@@ -7,7 +7,7 @@
 #include "adminservice.hpp"
 
 void RunServer() {
-  std::string server_address("0.0.0.0:50051");
+  std::string server_address("0.0.0.0:50050");
   bigfile::d::DiskAdminServiceImpl adminService;
   bigfile::d::FileServiceImpl fileService;
 

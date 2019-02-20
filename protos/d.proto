@@ -8,14 +8,11 @@ message ServerStatsResponse {
   int64 upTime = 1;
 }
 
-message ServerStatsRequest {
-  bigfile.core.Error error = 1;
-}
+message ServerStatsRequest {}
 
 message CreateFileRequest {
   string path = 1;
-  int64 sequence = 2;
-  bytes data = 3;
+  bytes data = 2;
 }
 
 message CreateFileResponse {
@@ -23,10 +20,17 @@ message CreateFileResponse {
   int64 size = 2;
 }
 
+message DeleteFileRequest {
+  string path = 1;
+}
+
+message DeleteFileResponse {}
+
 service AdminService {
   rpc GetServerStats(ServerStatsRequest) returns (ServerStatsResponse);
 }
 
 service FileService {
   rpc CreateFile(CreateFileRequest) returns (CreateFileResponse);
+  rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse);
 }

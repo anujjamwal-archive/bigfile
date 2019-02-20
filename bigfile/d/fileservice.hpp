@@ -7,6 +7,7 @@ namespace bigfile {
     class FileServiceImpl final: public FileService::Service {
       public:
       ::grpc::Status CreateFile(::grpc::ServerContext* context, const CreateFileRequest* request, CreateFileResponse* response);
+      ::grpc::Status DeleteFile(::grpc::ServerContext* context, const DeleteFileRequest* request, DeleteFileResponse* response);
     };
   }
 }
